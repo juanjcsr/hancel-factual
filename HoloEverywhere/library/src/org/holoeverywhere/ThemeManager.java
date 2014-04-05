@@ -203,7 +203,6 @@ public final class ThemeManager {
     private static int _THEME_MASK = 0;
     private static int _THEME_MODIFIER = 0;
     private static final String _THEME_TAG = ":holoeverywhere:theme";
-
     private static final SparseIntArray _THEMES_MAP = new SparseIntArray();
 
     public static final int COLOR_SCHEME_MASK;
@@ -278,9 +277,7 @@ public final class ThemeManager {
      * Apply theme from intent. Only system use, don't call it!
      */
     public static void applyTheme(Activity activity) {
-        boolean force = activity instanceof IHoloActivity ? ((IHoloActivity) activity)
-                .isForceThemeApply() : false;
-        ThemeManager.applyTheme(activity, force);
+        ThemeManager.applyTheme(activity, false);
     }
 
     /**
@@ -406,8 +403,8 @@ public final class ThemeManager {
                 return getterResource;
             }
         }
-        final int i = _THEMES_MAP.get(themeTag, _DEFAULT_THEME);
-        if (i == _DEFAULT_THEME) {
+        final int i = _THEMES_MAP.get(themeTag, -1);
+        if (i == -1) {
             return _THEMES_MAP.get(_DEFAULT_THEME, R.style.Holo_Theme);
         } else {
             return i;
@@ -559,11 +556,11 @@ public final class ThemeManager {
     }
 
     /**
-     * Generate flag for using it in ThemeManager. Not more than 32 flags can be
+     * Generate flag for using it in ThemeManager. Not more than 24 flags can be
      * created.
      */
     public static int makeNewFlag() {
-        if (NEXT_OFFSET > 32) {
+        if (NEXT_OFFSET >= 24) {
             throw new IllegalStateException();
         }
         final int flag = 1 << NEXT_OFFSET++;
@@ -842,6 +839,7 @@ public final class ThemeManager {
      * @param theme Theme flags for check
      * @param force Force restart activity
      */
+    @SuppressLint("InlinedApi")
     public static void restartWithTheme(Activity activity, int theme, boolean force) {
         if (theme < _START_RESOURCES_ID && theme > 0) {
             if (ThemeManager._THEME_MODIFIER > 0) {
