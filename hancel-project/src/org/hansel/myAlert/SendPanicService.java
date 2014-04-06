@@ -131,7 +131,7 @@ public class SendPanicService extends Service implements GooglePlayServicesClien
 						Log.v("Mensaje a: " + numeros.get(j));
 						Log.v(mensaje + mapa + " bateria: "+getNivelBateria()+"%");
 
-						enviarSMS(numeros.get(j), mensaje + mapa+ " bateria: "+getNivelBateria()+"%");
+						//enviarSMS(numeros.get(j), mensaje + mapa+ " bateria: "+getNivelBateria()+"%");
 						// enviarSMS(numeros.get(j), direccion);
 					} catch (Exception ex) {
 						Log.v("Ocurrio un Error al enviar SMS :" + numeros	+ " Excepcion:" + ex.getMessage());

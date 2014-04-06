@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>  
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -143,7 +144,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+      
+        
         <receiver android:name="org.hansel.myAlert.MyReceiver" />
+        
+        
+        
         <receiver
             android:name=".Widget.MyWidgetProvider"
             android:icon="@drawable/ic_launcher"
@@ -161,6 +167,31 @@
             android:name="org.hancel.customclass.PickCalendar"
             android:theme="@style/Holo.Theme" >
         </activity>
+        <!-- 
+        
+        
+         -->
+         <receiver android:name=".Widget.HancelPhotoWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_hancel_photo_provider" />
+        </receiver>
+      
+         <receiver
+            android:name=".Widget.HancelPhotoWidgetIntentReceiver"
+            android:label="widgetBroadcastReceiver" >
+             <intent-filter>
+                <action android:name="pl.looksok.intent.action.CHANGE_PICTURE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_hancel_photo_provider" />
+        </receiver>
     </application>
 
 </manifest>
