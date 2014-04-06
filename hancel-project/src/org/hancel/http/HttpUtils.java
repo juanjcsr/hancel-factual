@@ -114,7 +114,7 @@ public class HttpUtils {
 		 JSONObject result =  requestHttp(URL_BASE, values, "GET");
 		 if(result==null)
 		 {
-			 throw new NoInternetException("Error en petición al server");
+			 throw new NoInternetException("Error en petici˜n al server");
 		 }
 		 return result;
 		
@@ -140,18 +140,13 @@ public class HttpUtils {
 		 JSONObject result = requestHttp(URL_BASE, values, "GET");
 		 if(result==null)
 		 {
-			 throw new NoInternetException("Error en petición al server");
+			 throw new NoInternetException("Error en petici˜n al server");
 		 }
 		 return result;
 		
 		 
 	}
-	public static JSONObject sendPanic(String idDevice
-			,String idUsuario
-			,String latitude
-			,String longitude
-			,String bateria
-			,String emailsIds
+	public static JSONObject sendPanic(String idDevice,String idUsuario,String latitude,String longitude,String bateria,String emailsIds
 			,String ongList) throws NoInternetException
 	{
 		 ArrayList<NameValuePair> values = new ArrayList<NameValuePair>();
@@ -163,13 +158,10 @@ public class HttpUtils {
 		 values.add(new BasicNameValuePair("bateria",bateria));
 		 values.add(new BasicNameValuePair("emailsIds",emailsIds));
 		 values.add(new BasicNameValuePair("ongsIds",ongList ));
-		 
-		
-		 
 		 JSONObject result =  requestHttp(URL_BASE, values, "GET");
 		 if(result==null)
 		 {
-			 throw new NoInternetException("Error en petición al server");
+			 throw new NoInternetException("Error en petici—n al server");
 		 }
 		 return result;
 		 
@@ -191,7 +183,7 @@ public class HttpUtils {
 		 JSONObject result =  requestHttp(URL_BASE, values, "GET");
 		 if(result==null)
 		 {
-			 throw new NoInternetException("Error en petición al server");
+			 throw new NoInternetException("Error en petici—n al server");
 		 }
 		 return result;
 		 
