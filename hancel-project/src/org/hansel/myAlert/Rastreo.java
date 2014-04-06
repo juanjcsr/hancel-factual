@@ -303,6 +303,12 @@ public class Rastreo extends Fragment implements OnClickListener{
 	}
 	@Override
 	public void onClick(View v) {
+		//Permite arreglar el bug al no ser notificada esta actividad de que el servicio ya esta en ejecucion,
+		//Si el servicio se inicio y automaticamente se detuvo, esto permite detenerlo
+		if (btnTracking.getText() == STOP_TRACK) {
+			createPasswordDialog(btnTracking);
+			return;
+		}
 		switch (v.getId()) {
 		case R.id.btnCancelCurrentTrack:
 			//cancelamos alarma para iniciar servicio
