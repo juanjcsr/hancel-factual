@@ -19,13 +19,6 @@ import java.util.ArrayList;
 import org.hansel.myAlert.Log.Log;
 import org.hansel.myAlert.Utils.Util;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.viewpagerindicator.TabPageIndicator;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -34,6 +27,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
+
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.viewpagerindicator.TabPageIndicator;
 
 public class MainActivity extends org.holoeverywhere.app.Activity{
 	/* (non-Javadoc)
@@ -54,6 +54,8 @@ public class MainActivity extends org.holoeverywhere.app.Activity{
 	//private Rastreo mFragmentTwo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		ServicioLeeBotonEncendido.login = MainActivity.this;
+		startService(new Intent(MainActivity.this,ServicioLeeBotonEncendido.class));
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		presionaPanico = getIntent().getBooleanExtra("panico",false);
@@ -69,9 +71,7 @@ public class MainActivity extends org.holoeverywhere.app.Activity{
 		{
 			PanicButtonFragment mFragmentOne = new PanicButtonFragment();
 			mFragmentOne.setArguments(data);
-			 mPagerAdapter.addFragment(mFragmentOne,"Botón de Pánico");
-			// mFragmentTwo= new Rastreo();
-			 //mPagerAdapter.addFragment(mFragmentTwo,"Inicia rastreo");
+			 mPagerAdapter.addFragment(mFragmentOne,"Bot—n de P‡nico");
 		}else
 		{
 			mPagerAdapter.addFragment(new NoPlayServicesFragment(), "Error");

@@ -25,6 +25,7 @@ import org.hansel.myAlert.Utils.SimpleCrypto;
 import org.hansel.myAlert.Utils.Util;
 import org.hansel.myAlert.WelcomeInfo.ScreenSlidePageAdapter;
 import org.hansel.myAlert.dataBase.UsuarioDAO;
+import org.json.JSONObject;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -43,7 +44,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import org.json.JSONObject;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -66,7 +66,8 @@ public class Login extends org.holoeverywhere.app.Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_layout);
-	
+		
+		
 		//buscamos si quedo en un paso del registro y no termino
 		int step= PreferenciasHancel.getCurrentWizardStep(getApplicationContext());
 		switch (step) {
