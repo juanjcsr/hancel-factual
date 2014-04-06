@@ -30,12 +30,15 @@ import com.google.android.gms.location.LocationClient;
 import android.app.AlarmManager;
 import android.app.Service;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -115,6 +118,9 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 			String emailList="";
 			SharedPreferences preferencias= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 			String mensaje= preferencias.getString("pref_key_custom_msg", "Ayuda");
+			
+			
+			
 			for (int i = 0; i < users.size(); i++) { // por cada contacto
 				ContactInfo ci = users.get(i);
 				ArrayList<String> numeros =ci.getPhoneNumbers();
@@ -124,8 +130,9 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 					try
 					{
 						Log.v("Mensaje a: "+numeros.get(j));
-						Log.v(mensaje+mapa);
-					enviarSMS(numeros.get(j) , mensaje+mapa);
+						Log.v(mensaje+mapa+getNivelBateria());
+						
+					enviarSMS(numeros.get(j) , mensaje+mapa+getNivelBateria());
 						//enviarSMS(numeros.get(j), direccion);
 					}catch(Exception ex)
 					{
@@ -174,6 +181,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 			}
 			return null;
 		}
+		
 		private String getContactById(String photoId) {
 			StringBuilder lista= new StringBuilder();
 			Cursor cur1 = getApplicationContext().getContentResolver().query( 
@@ -218,18 +226,31 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		alarmManager.cancel(Util.getStopSchedulePendingIntentWithExtra(getApplicationContext()));
 		
 	}
+	/**
+	 * envia un SMS  si es muy largo envia varios
+	 * 
+	 * @param telefono (telefono al que se le enviara el SMS)
+	 * @param mensaje (mensaje de panico)
+	 */
 	public void enviarSMS(String telefono, String mensaje){
 		SmsManager sms = SmsManager.getDefault();
 		try {
 			sms.sendTextMessage(telefono, null, mensaje, null, null);
+			Log.v("Mensaje enviado a "+telefono);
 		} catch (Exception e) {
-			ArrayList<String> parts = sms.divideMessage(mensaje);
-			sms.sendMultipartTextMessage(telefono, null, parts, null, null);
-			Log.v("Error al mandar , se manda en una sola parte");
-			e.printStackTrace();
+			try{
+				ArrayList<String> parts = sms.divideMessage(mensaje);
+				sms.sendMultipartTextMessage(telefono, null, parts, null, null);
+				Log.v("Mensaje enviado en partes "+telefono);
+			}catch(Exception i){
+				Log.v("Error al mandar , falla al envio de SMS");
+				e.printStackTrace();
+			}
 		}
-		Log.v("Mensaje enviado a "+telefono);
+		
 	}
+	
+	
 	private ArrayList<ContactInfo> getSqliteContacts()
 	{
 		ArrayList<ContactInfo> userInfo= new ArrayList<ContactInfo>();
@@ -275,5 +296,10 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	private String getNivelBateria() {
+	//	Log.v("*******entre bateria");
+		 Intent i = new ContextWrapper(this).registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+		// Log.v("*******nivel"+i.getIntExtra(BatteryManager.EXTRA_LEVEL, -1));
+	    	return " bateria: "+ i.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)+"%";
+	}
 }

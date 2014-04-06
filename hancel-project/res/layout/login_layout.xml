@@ -40,21 +40,19 @@
             android:id="@+id/pager"
             android:layout_width="fill_parent"
             android:layout_height="0dip"
-            android:layout_weight="0.9"
-            >
+            android:layout_weight="0.9" >
         </android.support.v4.view.ViewPager>
-        <com.viewpagerindicator.CirclePageIndicator android:layout_width="match_parent"
-            android:layout_height="2dp"
+
+        <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/pagerIndicator"
-            android:layout_weight="0.1"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_weight="0.1" />
 
         <ScrollView
             android:id="@+id/login_form1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            
-            >
+            android:layout_height="wrap_content" >
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -78,7 +76,8 @@
                 android:layout_height="90dip"
                 android:background="@layout/footer_repeat"
                 android:layout_alignParentBottom="true">
-        </LinearLayout>        -->
+        </LinearLayout>
+                -->
                 <!-- Footer Ends -->
 
 
