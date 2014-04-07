@@ -1,13 +1,8 @@
 package org.hansel.myAlert.Widget;
 
-import org.hansel.myAlert.MainActivity;
-import org.hansel.myAlert.R;
-
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.RemoteViews;
 
 /**
  * Created by Jacek Milewski

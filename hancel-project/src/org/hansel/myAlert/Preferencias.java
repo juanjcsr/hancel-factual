@@ -18,7 +18,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -34,6 +33,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -148,7 +150,23 @@ public class Preferencias extends org.holoeverywhere.preference.PreferenceActivi
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == RESULT_LOAD_FOTO) {
-			
+			File file = new File(foto);
+			Bitmap myBitmap = BitmapFactory.decodeFile(file
+					.getAbsolutePath());
+			Matrix mat = new Matrix();
+			mat.postRotate(-90);
+			Bitmap bMapRotate = Bitmap.createBitmap(myBitmap, 0, 0,
+					myBitmap.getWidth(), myBitmap.getHeight(), mat, true);
+			 try{
+			        File file2 = new File(foto);
+			        FileOutputStream fOut = new FileOutputStream(file2);
+			        bMapRotate.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+			        fOut.flush();
+			        fOut.close();}
+			    catch (Exception e) {
+			        e.printStackTrace();
+			        Log.i(null, "Save file error!");
+			}
 			
 
 		}else if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK	&& null != data) {

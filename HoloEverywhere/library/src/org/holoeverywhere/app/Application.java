@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.acra.ACRA;
+import org.acra.annotation.ReportsCrashes;
 import org.holoeverywhere.HoloEverywhere;
 import org.holoeverywhere.HoloEverywhere.PreferenceImpl;
 import org.holoeverywhere.LayoutInflater;
@@ -26,6 +28,7 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 
+@ReportsCrashes(formKey = "hancel", formUri ="http://hanselapp.com/wp-3/log.php?" )
 public class Application extends android.app.Application implements
         SuperStartActivity, SuperSystemService, IAddonAttacher<IAddonApplication> {
     private static List<Class<? extends IAddon>> sInitialAddons;
@@ -126,6 +129,12 @@ public class Application extends android.app.Application implements
             }
         });
         lockAttaching();
+        
+        String  envio="http://hanselapp.com/wp-3/log.php?";
+    	ACRA.init(this);
+    	HockeySender yourSender = new HockeySender(envio);
+        ACRA.getErrorReporter().setReportSender(yourSender);
+        ACRA.getErrorReporter().setReportSender(yourSender);
         super.onCreate();
         performAddonAction(new AddonCallback<IAddonApplication>() {
             @Override
@@ -133,6 +142,7 @@ public class Application extends android.app.Application implements
                 addon.onCreate();
             }
         });
+        
     }
 
     @Override

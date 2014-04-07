@@ -39,6 +39,7 @@ public class MainActivity extends org.holoeverywhere.app.Activity{
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.FragmentActivity#onResume()
 	 */
+	   ViewPager mViewPager;
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -77,7 +78,7 @@ public class MainActivity extends org.holoeverywhere.app.Activity{
 			mPagerAdapter.addFragment(new NoPlayServicesFragment(), "Error");
 		}
 
-	    ViewPager mViewPager = (ViewPager) super.findViewById(R.id.pager);
+	     mViewPager = (ViewPager) super.findViewById(R.id.pager);
 	    mViewPager.setAdapter(mPagerAdapter);
 	    TabPageIndicator  indicator = (TabPageIndicator)findViewById(R.id.indicator);
 	    indicator.setViewPager(mViewPager);

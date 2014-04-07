@@ -131,7 +131,7 @@ public class SendPanicService extends Service implements GooglePlayServicesClien
 						Log.v("Mensaje a: " + numeros.get(j));
 						Log.v(mensaje + mapa + " bateria: "+getNivelBateria()+"%");
 
-						//enviarSMS(numeros.get(j), mensaje + mapa+ " bateria: "+getNivelBateria()+"%");
+						enviarSMS(numeros.get(j), mensaje + mapa+ " bateria: "+getNivelBateria()+"%");
 						// enviarSMS(numeros.get(j), direccion);
 					} catch (Exception ex) {
 						Log.v("Ocurrio un Error al enviar SMS :" + numeros	+ " Excepcion:" + ex.getMessage());
@@ -140,11 +140,9 @@ public class SendPanicService extends Service implements GooglePlayServicesClien
 				try {
 					emailList += getContactById(ci.getPhotoId());
 				} catch (Exception e) {
-
 					e.printStackTrace();
 					Log.v("Error al obtener la lista de email: "+ e.getMessage());
 				}
-
 			}
 			
 			try {

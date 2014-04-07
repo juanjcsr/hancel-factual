@@ -24,10 +24,6 @@ public class HancelPhotoWidgetProvider extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 			int[] appWidgetIds) {
 	
-		
-	
-		
-		
 		 final int N = appWidgetIds.length;
 
 	        // Perform this loop procedure for each App Widget that belongs to this provider
@@ -53,7 +49,6 @@ public class HancelPhotoWidgetProvider extends AppWidgetProvider {
 	        }
 	}
 
-	
 	
 	private Bitmap getImageToSet() {
 		return BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/hancel/imagenhancel.jpg");
