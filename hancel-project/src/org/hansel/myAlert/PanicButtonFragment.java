@@ -22,6 +22,8 @@ import org.hansel.myAlert.Log.Log;
 import org.hansel.myAlert.Utils.PreferenciasHancel;
 
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -37,6 +39,8 @@ import android.widget.Toast;
 public class PanicButtonFragment extends Fragment 
 {
 	private TextView txtLastPanic;
+	private Button btnTracking;
+	private static final String STOP_TRACK = "Detener";
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -45,13 +49,16 @@ public class PanicButtonFragment extends Fragment
 		View v = inflater.inflate(R.layout.fragment_panic, container,false);
 		Button btnPanico = (Button)v.findViewById(R.id.btnPanico);
 		txtLastPanic =(TextView)v.findViewById(R.id.txtUltimaAlerta);
-		
+		btnTracking = (Button)v.findViewById(R.id.IniciaTrackId);
 		btnPanico.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				getActivity().startService(new Intent(getActivity(),SendPanicService.class));
 				Toast.makeText(getActivity().getApplicationContext(), "Alerta enviada"
 						, Toast.LENGTH_SHORT).show();
+				//Arregla el bug en el que al iniciar el servicio, no notifica a la Actividad de que
+				//ya se estaa ejecutando, entonces no se puede detener inmediatamente.
+				btnTracking.setText(STOP_TRACK);
 			}
 		});
 		//programar rastreo

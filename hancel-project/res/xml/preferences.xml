@@ -32,7 +32,10 @@
             holo:id="@+id/pref_contacts_key"
             holo:summary="Contactos a enviar alerta"
             holo:title="Seleccionar Contactos" />
-
+ 		<Preference
+            holo:id="@+id/pref_pic"
+            holo:title="Foto para el widget" />
+        
         <RingtonePreference
             holo:id="@+id/pref_ringtone_pref"
             holo:defaultValue="content://settings/system/notification_sound"
