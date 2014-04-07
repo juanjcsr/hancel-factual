@@ -1,10 +1,27 @@
 AplicaciÛn Desarollada por:
 Javier Mejia (@zenyagami)
 Ignacio Gonzales
-Colaboradores:
-Diego Mendiburu
-Ela Stapley
-Usa librerias de:
-HoloEverywhere-Prototik  https://github.com/Prototik/HoloEverywhere
-Android Open Source http://source.android.com/source/index.html
-PageView Indicator - Jake Wharton -https://github.com/JakeWharton/Android-ViewPagerIndicator
+
+Hancel es una aplicación para teléfonos inteligentes que permite reportar agresiones en tiempo real y programar alertas para que se envíen automáticamente en caso de algún incidente. Ofrece un menú de las organizaciones dedicadas a proteger la libertad de expresión en México y Colombia, y permite escoger cuáles podrían recibir reportes de agresión y alertas, creando así redes de protección para una respuesta coordinada e inmediata.
+
+Copyright © 2013 Ela Stapley & Diego Mendiburu
+
+Hancel v 1.0 fue desarrollada por:
+
+Lead programmer: Javier Mejía (@zenyagami)
+Design & additional programming: Ignacio González
+Database & Web Services Josué Lucio @jhosuasme 
+Hancel v 2.0 fue desarrollada por:
+
+Miguel Morán
+
+Juan Carlos Castellanos
+
+Juan Carlos Sánchez    
+
+
+Este es un Software Libre; como tal redistribuirlo y/o modificarlo está permitido, siempre y cuando se haga bajo los términos y condiciones de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea en su versión 2 o cualquier otra de las posteriores a la misma.
+
+Este “Programa” se distribuye con la intención de que sea útil, sin embargo carece de garantía, ni siquiera tiene la garantía implícita de tipo comercial o inherente al propósito del mismo “Programa”. Ver la Licencia Pública General GNU para más detalles.
+
+Se debe haber recibido una copia de la Licencia Pública General GNU con este “Programa”, si este no fue el caso, favor de escribir a la Free Software Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
